@@ -1,0 +1,30 @@
+.input-container {
+    padding: 20px;
+    background-color: #f9f9f9;
+  }
+  
+  .file-upload, .url-input, .summary-input {
+    margin-bottom: 20px;
+  }
+  
+  input[type="text"], textarea {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+  }
+  
+  textarea {
+    height: 100px;
+  }
+  
+  .generate-btn {
+    padding: 10px 20px;
+    background-color: #f5a5a5;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+  }
+  

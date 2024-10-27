@@ -12,6 +12,7 @@ const Input = () => {
   const [summaryText, setSummaryText] = useState('');
   const [recentDate, setRecentDate] = useState('');
   const [token, setToken] = useState(Cookies.get('token') || null);
+  const [loadingSummary, setLoadingSummary] = useState(false); // 요약 버튼 상태
 
   const updateToken = () => {
     const newToken = Cookies.get('token');
@@ -61,7 +62,6 @@ const Input = () => {
       const result = res.data;
       if (result) {
         console.log(result);
-        // setFile(result.fileDirname);
         setRecruitUrl(result.recruitUrl);
         setSummaryText(result.summaryText);
         setRecentDate(result.recentDate);
@@ -106,6 +106,24 @@ const Input = () => {
     uploadFile();
   }, [recentDate]);
 
+  const handleGenerateSummary = async () => {
+    if (!recruitUrl) {
+      alert("채용공고 링크를 입력하세요.");
+      return;
+    }
+
+    setLoadingSummary(true);
+    try {
+      const res = await axios.post('http://localhost:8080/api/summarize', { url: recruitUrl });
+      setSummaryText(res.data.summary || '요약 결과가 없습니다.');
+    } catch (error) {
+      console.error('요약 생성 에러:', error);
+      setSummaryText('요약 실패. 다시 시도해 주세요.');
+    } finally {
+      setLoadingSummary(false);
+    }
+  };
+
   return (
     <div className="input-container">
       <h2>정보 입력하기</h2>
@@ -127,12 +145,17 @@ const Input = () => {
 
       <div className="summary-text-input">
         <label>3. 포지션 요약</label>
-        <textarea
-          placeholder="공고 내용을 요약해서 보여주기
-          ex) 소개, 회사위치, 요구하는 직무능력"
-          value={summaryText}
-          onChange={handleSummaryTextChange}
-        />
+        <div className="summary-container">
+          <textarea
+            placeholder="공고 내용을 요약해서 보여주기
+            ex) 소개, 회사위치, 요구하는 직무능력"
+            value={summaryText}
+            onChange={handleSummaryTextChange}
+          />
+          <button onClick={handleGenerateSummary} disabled={loadingSummary} className="summary-btn">
+            {loadingSummary ? '요약 중...' : '공고 요약하기'}
+          </button>
+        </div>
       </div>
 
       <button className="generate-btn" onClick={handleGenerateQuestions}>
@@ -140,7 +163,7 @@ const Input = () => {
       </button>
 
       <div className="recent-date">
-        <small>{recentDate == '' ? '' : `마지막 수정: ${recentDate}`}</small>
+        <small>{recentDate === '' ? '' : `마지막 수정: ${recentDate}`}</small>
       </div>
     </div>
   );

@@ -1,0 +1,89 @@
+/* 배경 색상 및 공통 스타일 */
+.input-page {
+    background-color: #fff4e6;
+    text-align: center;
+    color: #333;
+    min-height: 100vh;
+}
+
+/* 네비게이션 바 */
+.navbar {
+    background-color: #f5a5a5;
+    height: 100px;
+}
+
+.navbar-toolbar {
+    min-height: 100px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.navbar-logo {
+    font-weight: bold;
+    font-size: 28px;
+}
+
+.navbar-link {
+    text-decoration: none;
+    color: white;
+}
+
+/* 메인 콘텐츠 */
+.input-container {
+    margin-top: 30px;
+    padding: 20px;
+    background-color: #fff4e6;
+}
+
+/* 섹션 제목 */
+.section-title {
+    font-weight: bold;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+/* 파일 업로드 */
+.file-upload {
+    margin: 10px 0 20px 0;
+    padding: 10px;
+}
+
+/* URL 입력 */
+.url-input-container {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.summarize-button {
+    background-color: #f5a5a5;
+    color: #fff;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 8px;
+}
+
+.summarize-button:hover {
+    background-color: #e58e8e;
+}
+
+/* 요약 텍스트 */
+.summary-textarea {
+    margin-top: 10px;
+    margin-bottom: 30px;
+}
+
+/* 모의 면접 진행 버튼 */
+.proceed-button {
+    background-color: #f5a5a5;
+    color: #fff;
+    padding: 15px 30px;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 8px;
+}
+
+.proceed-button:hover {
+    background-color: #e58e8e;
+}

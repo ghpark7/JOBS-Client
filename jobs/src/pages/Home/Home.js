@@ -37,37 +37,6 @@ const Home = () => {
               면JOBS
             </Link>
           </Typography>
-          <div>
-            <Button
-              color="inherit"
-              variant="outlined"
-              style={{
-                marginRight: "15px",
-                borderColor: "#fff",
-                color: "#fff",
-                padding: "10px 20px",
-                fontSize: "18px",
-                fontWeight: "bold",
-                borderRadius: "8px",
-              }}
-            >
-              회원가입
-            </Button>
-            <Button
-              color="inherit"
-              variant="outlined"
-              style={{
-                borderColor: "#fff",
-                color: "#fff",
-                padding: "10px 20px",
-                fontSize: "18px",
-                fontWeight: "bold",
-                borderRadius: "8px",
-              }}
-            >
-              로그인
-            </Button>
-          </div>
         </Toolbar>
       </AppBar>
 
@@ -91,7 +60,7 @@ const Home = () => {
           }}
           size="large"
           className="start-button"
-          onClick={() => (window.location.href = "/mock-interview")}
+          onClick={() => (window.location.href = "/input")}
         >
           모의 면접 시작하기
         </Button>

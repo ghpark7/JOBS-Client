@@ -3,9 +3,9 @@ import {
   AppBar,
   Toolbar,
   Typography,
-  Button,
   Container,
   TextField,
+  Button,
   Box,
 } from "@mui/material";
 import { Link } from "react-router-dom";
@@ -24,23 +24,37 @@ const Input = () => {
   };
 
   const handleSummarize = () => {
-    // 요약 API 호출 예시
-    const generatedSummary = "이곳에 AI로 요약된 공고 내용이 제공됩니다.";
-    setSummary(generatedSummary);
-    setCustomSummary(generatedSummary); // 기본값은 요약된 내용
+    // AI로 요약된 내용을 기본값으로 설정
+    const aiGeneratedSummary =
+      "공고 내용 요약해서 보여주기\nex) 소개, 회사 위치, 요구하는 직무 능력";
+    setSummary(aiGeneratedSummary);
+    setCustomSummary(aiGeneratedSummary);
   };
 
   const handleProceedToInterview = () => {
-    window.location.href = "/mock-interview";
+    alert("예상 질문 생성하기 버튼이 클릭되었습니다!");
   };
 
   return (
     <div className="input-page">
-      {/* 상단 네비게이션 바 */}
-      <AppBar position="sticky" className="navbar">
-        <Toolbar className="navbar-toolbar">
-          <Typography variant="h4" component="div" className="navbar-logo">
-            <Link to="/" className="navbar-link">
+      {/* 상단 헤더 (메인 페이지와 동일) */}
+      <AppBar
+        position="sticky"
+        style={{ backgroundColor: "#f5a5a5", height: "100px" }}
+      >
+        <Toolbar
+          style={{
+            minHeight: "100px",
+            display: "flex",
+            justifyContent: "space-between",
+          }}
+        >
+          <Typography
+            variant="h4"
+            component="div"
+            style={{ fontWeight: "bold", fontSize: "28px" }}
+          >
+            <Link to="/" style={{ textDecoration: "none", color: "white" }}>
               면JOBS
             </Link>
           </Typography>
@@ -48,39 +62,46 @@ const Input = () => {
       </AppBar>
 
       {/* 메인 콘텐츠 */}
-      <Container maxWidth="lg" className="input-container">
-        <Typography variant="h5" className="section-title">
-          자기소개서 업로드
+      <Container maxWidth="md" className="input-container">
+        {/* 자기소개서 파일 첨부 */}
+        <Typography variant="h6" className="section-title">
+          자소서 파일첨부
         </Typography>
-        <input
-          type="file"
-          className="file-upload"
-          accept=".doc,.docx,.pdf"
-          onChange={handleFileUpload}
-        />
-
-        <Typography variant="h5" className="section-title">
-          채용공고 페이지 URL 입력
+        <Typography variant="body2" className="file-hint">
+          500MB 이하의 pdf파일 업로드 가능
         </Typography>
-        <Box className="url-input-container">
-          <TextField
-            variant="outlined"
-            fullWidth
-            placeholder="채용공고 페이지 URL을 입력하세요"
-            value={jobPostingUrl}
-            onChange={(e) => setJobPostingUrl(e.target.value)}
+        <Box className="file-upload-container">
+          <input
+            type="file"
+            className="file-upload"
+            accept=".doc,.docx,.pdf"
+            onChange={handleFileUpload}
           />
-          <Button
-            variant="contained"
-            className="summarize-button"
-            onClick={handleSummarize}
-          >
-            공고 요약하기
-          </Button>
         </Box>
 
-        <Typography variant="h5" className="section-title">
-          공고 요약 내용
+        {/* 공고 URL 첨부 */}
+        <Typography variant="h6" className="section-title">
+          공고 url 첨부
+        </Typography>
+        <TextField
+          variant="outlined"
+          fullWidth
+          placeholder="채용공고 url을 입력하세요"
+          value={jobPostingUrl}
+          onChange={(e) => setJobPostingUrl(e.target.value)}
+          className="url-input"
+        />
+        <Button
+          variant="contained"
+          className="summarize-button"
+          onClick={handleSummarize}
+        >
+          공고 요약하기
+        </Button>
+
+        {/* 포지션 요약 */}
+        <Typography variant="h6" className="section-title">
+          포지션 요약
         </Typography>
         <TextField
           variant="outlined"
@@ -92,12 +113,13 @@ const Input = () => {
           className="summary-textarea"
         />
 
+        {/* 예상 질문 생성 버튼 */}
         <Button
           variant="contained"
-          className="proceed-button"
+          className="generate-button"
           onClick={handleProceedToInterview}
         >
-          모의 면접 진행하기
+          예상 질문 생성하기
         </Button>
       </Container>
     </div>
